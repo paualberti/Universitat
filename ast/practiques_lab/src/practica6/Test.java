@@ -44,6 +44,6 @@ class HostRcv implements Runnable {
   }
 
   public void run() {
-    new Receiver(new TSocket(proto, HostRcv.PORT, HostSnd.PORT),50,1000).start();
+    new Receiver(new TSocket(proto, HostRcv.PORT, HostSnd.PORT), 50, 1000).start();
   }
 }

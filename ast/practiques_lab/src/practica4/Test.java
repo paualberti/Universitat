@@ -27,8 +27,8 @@ class HostRcv implements Runnable {
   }
 
   public void run() {
-    //arranca dos fils receptors, cadascun amb el seu socket de recepcio
-    //fes servir els ports apropiats
+    // arranca dos fils receptors, cadascun amb el seu socket de recepcio
+    // fes servir els ports apropiats
     new Receiver(new TSocket(proto, HostRcv.PORT, HostSnd.PORT1), 2000, 50).start();
     new Receiver(new TSocket(proto, HostRcv.PORT, HostSnd.PORT2), 2000, 10).start();
   }
@@ -46,8 +46,8 @@ class HostSnd implements Runnable {
   }
 
   public void run() {
-    //arranca dos fils emissors, cadascun amb el seu socket de transmissio
-    //fes servir els ports apropiats
+    // arranca dos fils emissors, cadascun amb el seu socket de transmissio
+    // fes servir els ports apropiats
     new Sender(new TSocket(proto, HostSnd.PORT1, HostRcv.PORT)).start();
     new Sender(new TSocket(proto, HostSnd.PORT2, HostRcv.PORT)).start();
   }

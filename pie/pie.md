@@ -47,15 +47,15 @@ $$
 F_{XY}(x,y) = \int_{s=- \infty}^{s= x} \int_{t=- \infty}^{y} f_{XY}(s,t) \mathcal{ds,t} = P(X \leq x, Y \leq y)
 $$
 
-## Tropietats da la densitat conjunta
+## Propietats da la densitat conjunta
 
 * $f_{XY}(x,y) \leq 0 \text{ per tant } (x,y) \in R^2$
 
 ## Exemple
 
-Considerem el treangle T
+Considerem el triangle T
 amb vèrtex $(0,0),(1,0) \text{ i } (0,1)$.<br>
-Conriderem el vector $(X,Y)$ que pren valors uniformement en T.
+Considerem el vector $(X,Y)$ que pren valors uniformement en T.
 
 $$
 f_{XY}(x,y) =

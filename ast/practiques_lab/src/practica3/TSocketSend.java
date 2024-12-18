@@ -25,7 +25,6 @@ public class TSocketSend extends TSocket_base {
       offset += len;
       length -= len;
       printSndSeg(tcpSegment);
-      // log.printBLUE("Sender: sent " + MSS + " bytes");
       network.send(tcpSegment);
     }
   }

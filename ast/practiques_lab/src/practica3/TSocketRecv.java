@@ -28,7 +28,7 @@ public class TSocketRecv extends TSocket_base {
         appCV.await();
       }
       int num_bytes = 0;
-      while(num_bytes < length && !rcvQueue.empty()) {
+      while (num_bytes < length && !rcvQueue.empty()) {
         num_bytes += consumeSegment(buf, offset + num_bytes, length - num_bytes);
       }
       return num_bytes;

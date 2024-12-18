@@ -36,3 +36,8 @@ test:
 3:
 	javac practica3/Test.java
 	java practica3.Test
+
+# practica 4
+4:
+	javac practica4/Test.java
+	java practica4.Test

@@ -17,10 +17,10 @@ public class SimNet_Loss extends practica2.Protocol.SimNet_Monitor {
     log = Log.getLog();
   }
 
-  @Override
-  public void send(TCPSegment seg) {
-    //throw new RuntimeException("//Completar...");
-  }
+  // @Override
+  // public void send(TCPSegment seg) {
+  //   // throw new RuntimeException("//Completar...");
+  // }
 
   @Override
   public int getMTU() {
