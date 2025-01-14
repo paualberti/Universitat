@@ -1,0 +1,4 @@
+|47| vmap("<", "<gv") -- Indent left
+|48| vmap(">", ">gv") -- Indent right
+|49| vmap("<leader>r", '"hy:%s/<C-r>h/', { noremap = true, silent = false, desc = "[R]eplace text" })
+|57| vmap("<leader>d", '"_d', { noremap = true, silent = false })
