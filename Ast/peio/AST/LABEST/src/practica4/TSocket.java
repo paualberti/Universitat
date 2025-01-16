@@ -34,6 +34,7 @@ public class TSocket extends TSocket_base {
             length -= len;
             offset += len;
             network.send(seg);
+            printSndSeg(seg);
         }
     }
 
@@ -82,6 +83,7 @@ public class TSocket extends TSocket_base {
         seg.setSourcePort(localPort);
         seg.setDestinationPort(remotePort);
         network.send(seg);
+        printSndSeg(seg);
     }
 
     @Override

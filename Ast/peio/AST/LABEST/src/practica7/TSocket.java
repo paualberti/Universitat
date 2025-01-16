@@ -164,8 +164,8 @@ public class TSocket extends TSocket_base {
                         if (state == ESTABLISHED || state == FIN_WAIT) {
                             // Here should go the segment's data processing.
                         } else {
-                            // This should not occur, since a FIN has been 
-                            // received from the remote side. 
+                            // This should not occur, since a FIN has been
+                            // received from the remote side.
                             // Ignore the data segment.
                         }
                     }
@@ -178,11 +178,11 @@ public class TSocket extends TSocket_base {
     }
 
     protected void printRcvSeg(TCPSegment rseg) {
-        log.printBLACK("    rcvd: " + rseg);
+        log.printPURPLE("    rcvd: " + rseg);
     }
 
     protected void printSndSeg(TCPSegment rseg) {
-        log.printBLACK("    sent: " + rseg);
+        log.printPURPLE("    sent: " + rseg);
     }
 
 }

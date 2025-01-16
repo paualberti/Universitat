@@ -16,7 +16,7 @@ public class Log {
     public static final String PURPLE = "\033[0;35m";  // PURPLE
     public static final String CYAN   = "\033[0;36m";  // CYAN
     public static final String WHITE  = "\033[0;37m";  // WHITE
-    
+
     ReentrantLock lock = new ReentrantLock();
     private static Log instance;
     private static long startTime;
@@ -47,20 +47,24 @@ public class Log {
     public void printRED(String str){
       out(RED+str+RESET);
     }
-    
+
     public void printBLACK(String str){
       out(BLACK+str+RESET);
     }
-    
+
     public void printBLUE(String str){
       out(BLUE+str+RESET);
     }
-    
+
     public void printPURPLE(String str){
       out(PURPLE+str+RESET);
     }
-    
+
     public void printGREEN(String str){
       out(GREEN+str+RESET);
+    }
+
+    public void printYELLOW(String str){
+      out(YELLOW+str+RESET);
     }
 }

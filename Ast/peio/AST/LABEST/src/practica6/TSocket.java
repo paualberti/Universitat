@@ -72,6 +72,7 @@ public class TSocket extends TSocket_base {
                 offset += len;
                 network.send(seg);
                 startRTO(seg);
+                printSndSeg(seg);
                 snd_rcvWnd--;
                 snd_cngWnd--;
                 snd_minWnd = Math.min(snd_rcvWnd, snd_cngWnd);
@@ -96,12 +97,11 @@ public class TSocket extends TSocket_base {
     protected void timeout(TCPSegment seg) {
         lock.lock();
         try {
-            if (snd_rcvNxt == seg.getSeqNum()) {
+            if (snd_rcvNxt <= seg.getSeqNum()) {
                 network.send(seg);
                 log.printRED("Retransmissió.");
-            }
-            if (snd_rcvNxt <= seg.getSeqNum()) {
                 startRTO(seg);
+                printSndSeg(seg);
             }
         } finally {
             lock.unlock();
@@ -156,9 +156,9 @@ public class TSocket extends TSocket_base {
             printRcvSeg(rseg);
             if (rseg.isAck()) {
                 if (rseg.getAckNum() > snd_rcvNxt) {
+                    snd_cngWnd += rseg.getAckNum() - snd_rcvNxt;
                     snd_rcvNxt = rseg.getAckNum();
                     snd_rcvWnd = rseg.getWnd();
-                    snd_cngWnd++;
                     snd_minWnd = Math.min(snd_rcvWnd, snd_cngWnd);
                     appCV.signalAll();
                 }
@@ -169,11 +169,11 @@ public class TSocket extends TSocket_base {
                 } else {
                     if (rseg.getSeqNum() == rcv_rcvNxt) {
                         rcv_Queue.put(rseg);
-                        log.printPURPLE("receiver - introduit el: " + rseg.getSeqNum());
+                        log.printYELLOW("receiver - introduit el: " + rseg.getSeqNum());
                         rcv_rcvNxt++;
-                        while (out_of_order_segs.containsKey(rcv_rcvNxt)) {
+                        while (out_of_order_segs.containsKey(rcv_rcvNxt) && !rcv_Queue.full()) {
                             rcv_Queue.put(out_of_order_segs.get(rcv_rcvNxt));
-                            log.printPURPLE("receiver - introduit en ordre el: " + rcv_rcvNxt);
+                            log.printYELLOW("receiver - introduit en ordre el: " + rcv_rcvNxt);
                             out_of_order_segs.remove(rcv_rcvNxt);
                             rcv_rcvNxt++;
                         }
@@ -181,7 +181,7 @@ public class TSocket extends TSocket_base {
                         appCV.signalAll();
                     } else {
                         out_of_order_segs.put(rseg.getSeqNum(), rseg);
-                        log.printPURPLE("receiver - guardat fora d'ordre el: " + rseg.getSeqNum());
+                        log.printYELLOW("receiver - guardat fora d'ordre el: " + rseg.getSeqNum());
                     }
                 }
             }

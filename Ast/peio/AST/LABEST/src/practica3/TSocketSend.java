@@ -24,6 +24,7 @@ public class TSocketSend extends TSocket_base {
             length -= len;
             offset += len;
             network.send(seg);
+            printSndSeg(seg);
         }
     }
 

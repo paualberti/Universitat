@@ -16,5 +16,6 @@ public class TSocketSend extends TSocket_base {
         seg.setData(data, offset, length);
         seg.setPsh(true);
         network.send(seg);
+        printSndSeg(seg);
     }
 }

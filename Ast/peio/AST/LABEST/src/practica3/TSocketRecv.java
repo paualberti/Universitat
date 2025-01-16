@@ -55,6 +55,7 @@ public class TSocketRecv extends TSocket_base {
         lock.lock();
         try {
             rcvQueue.put(rseg);
+            printRcvSeg(rseg);
             appCV.signal();
         } catch (IllegalStateException e) {
         } finally {

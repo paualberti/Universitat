@@ -65,6 +65,7 @@ public class TSocket extends TSocket_base {
                 offset += len;
                 network.send(seg);
                 startRTO(seg);
+                printSndSeg(seg);
                 snd_rcvWnd--;
                 snd_sndNxt++;
             }
@@ -87,12 +88,11 @@ public class TSocket extends TSocket_base {
     protected void timeout(TCPSegment seg) {
         lock.lock();
         try {
-            if (snd_rcvNxt == seg.getSeqNum()) {
+            if (snd_rcvNxt <= seg.getSeqNum()) {
                 network.send(seg);
                 log.printRED("Retransmissió.");
-            }
-            if (snd_rcvNxt <= seg.getSeqNum()) {
                 startRTO(seg);
+                printSndSeg(seg);
             }
         } finally {
             lock.unlock();
@@ -137,6 +137,7 @@ public class TSocket extends TSocket_base {
         seg.setSourcePort(localPort);
         seg.setDestinationPort(remotePort);
         network.send(seg);
+        printSndSeg(seg);
     }
 
     // -------------  SEGMENT ARRIVAL  -------------

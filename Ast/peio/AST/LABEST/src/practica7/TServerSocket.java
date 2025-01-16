@@ -134,11 +134,11 @@ public class TServerSocket extends TSocket_base {
     }
 
     protected void printRcvSeg(TCPSegment rseg) {
-        log.printBLACK("\t\t\t\t\t\t\t    rcvd: " + rseg);
+        log.printPURPLE("\t\t\t\t\t\t\t    rcvd: " + rseg);
     }
 
     protected void printSndSeg(TCPSegment rseg) {
-        log.printBLACK("\t\t\t\t\t\t\t    sent: " + rseg);
+        log.printPURPLE("\t\t\t\t\t\t\t    sent: " + rseg);
     }
 
 }

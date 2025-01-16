@@ -13,6 +13,7 @@ public class TSocketRecv extends TSocket_base {
     @Override
     public int receiveData(byte[] data, int offset, int length) {
         TCPSegment seg = network.receive();
+        printRcvSeg(seg);
         byte[] segBin = seg.getData();
         int count = 0;
         try {
